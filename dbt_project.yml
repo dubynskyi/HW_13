@@ -1,0 +1,15 @@
+name: "fifa23"
+profile: "fifa23"
+version: "1.0.0"
+config-version: 2
+vars:
+  data_dir: "data"
+  row_limit: 10000
+model-paths: ["models"]
+macro-paths: ["macros"]
+models:
+  fifa23:
+    +materialized: table
+    staging: {+materialized: table}
+    intermediate: {+materialized: table}
+    marts: {+materialized: table}

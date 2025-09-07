@@ -1,0 +1,12 @@
+version: 2
+models:
+  - name: mart_player_profiles_male
+    columns:
+      - {name: age_group, tests: [{accepted_values: {values: ['U21','Prime','Veteran']}}]}
+      - {name: wage_eur, tests: [{wage_le_value: {value_col: value_eur}}]}
+  - name: mart_player_profiles_female
+    columns:
+      - {name: age_group, tests: [{accepted_values: {values: ['U21','Prime','Veteran']}}]}
+      - {name: wage_eur, tests: [{wage_le_value: {value_col: value_eur}}]}
+  - name: mart_team_dashboard
+    columns: [{name: avg_overall, tests: [not_null]}]

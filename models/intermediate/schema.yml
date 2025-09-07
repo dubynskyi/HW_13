@@ -1,0 +1,10 @@
+version: 2
+models:
+  - name: int_players_male
+    columns: [{name: player_id, tests: [not_null, unique]}]
+  - name: int_players_female
+    columns: [{name: player_id, tests: [not_null, unique]}]
+  - name: int_team_profiles_male
+    columns: [{name: avg_overall, tests: [team_overall_bounds]}]
+  - name: int_team_profiles_female
+    columns: [{name: avg_overall, tests: [team_overall_bounds]}]

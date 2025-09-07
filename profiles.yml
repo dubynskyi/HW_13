@@ -1,0 +1,9 @@
+fifa23:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: ./fifa23.duckdb
+      threads: 4
+      schema: analytics
+      extensions: [httpfs, parquet, json]

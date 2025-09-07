@@ -1,0 +1,38 @@
+name: dbt (duckdb) + Docs
+on:
+  schedule:
+    # 13:00 Europe/Kyiv ~ 10:00/11:00 UTC (з запасом під DST)
+    - cron: "0 10 * * *"
+    - cron: "0 11 * * *"
+  workflow_dispatch: {}
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+jobs:
+  build-and-docs:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: HW_13/DB_COURSE_DBT_HW
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install -q "dbt-core>=1.6,<1.8" "dbt-duckdb>=1.6,<1.8"
+      # Будуємо проти легких сэмплів, які зберігаються в репозиторії
+      - run: dbt build --profiles-dir . --vars 'data_dir: "data/sample", row_limit: 10000'
+      - run: dbt docs generate --profiles-dir . --vars 'data_dir: "data/sample", row_limit: 10000'
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: HW_13/DB_COURSE_DBT_HW/target
+  deploy-pages:
+    needs: build-and-docs
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    steps:
+      - uses: actions/deploy-pages@v4

@@ -1,0 +1,12 @@
+.venv/
+fifa23.duckdb
+target/
+dbt_packages/
+logs/
+.DS_Store
+
+# великі сирі дані не комітимо
+data/*
+!data/README.txt
+!data/sample/
+!data/sample/*.csv

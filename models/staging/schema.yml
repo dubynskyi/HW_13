@@ -1,0 +1,22 @@
+version: 2
+models:
+  - name: stg_players_male
+    columns:
+      - name: player_id
+        tests: [not_null, unique]
+      - name: gender
+        tests: [{accepted_values: {values: ['male']}}]
+  - name: stg_players_female
+    columns:
+      - name: player_id
+        tests: [not_null, unique]
+      - name: gender
+        tests: [{accepted_values: {values: ['female']}}]
+  - name: stg_teams_male
+    columns:
+      - name: club_id
+        tests: [not_null, unique]
+  - name: stg_teams_female
+    columns:
+      - name: club_id
+        tests: [not_null, unique]
