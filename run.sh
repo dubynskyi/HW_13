@@ -7,4 +7,4 @@ python -m pip install --upgrade pip
 pip install "dbt-core>=1.6,<1.8" "dbt-duckdb>=1.6,<1.8"
 dbt build --profiles-dir .
 dbt docs generate --profiles-dir .
-echo "Done. Open target/index.html"
+echo "Done."
